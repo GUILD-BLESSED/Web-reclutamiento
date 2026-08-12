@@ -15,16 +15,17 @@ formulario.addEventListener('submit', async (e) => {
 
     // Captura de datos del formulario
     const personaje = document.getElementById('personaje').value.trim();
+    const email = document.getElementById('email').value.trim(); // <--- CAPTURA EMAIL
     const clase = document.getElementById('clase').value;
     const resets = document.getElementById('resets').value;
     const masterLvl = document.getElementById('masterLvl').value;
     const equipamiento = document.getElementById('equipamiento').value;
     const huntLvl = document.getElementById('huntLvl').value;
+    const telefono = document.getElementById('telefono').value.trim();
     const guildAnterior = document.getElementById('guildAnterior').value.trim() || 'Ninguna / No especifica';
     const pjBattle = document.getElementById('pjBattle').value.trim() || 'No';
-    const telefono = document.getElementById('telefono').value.trim();
 
-    // Validaciones básicas
+    // Validaciones
     if (!clase || !equipamiento) {
         mostrarMensaje('Por favor, selecciona tu clase y equipamiento.', 'error');
         return;
@@ -35,21 +36,29 @@ formulario.addEventListener('submit', async (e) => {
         return;
     }
 
+    // Validación básica de formato de correo
+    const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!regexEmail.test(email)) {
+        mostrarMensaje('Por favor, ingresa un correo electrónico válido.', 'error');
+        return;
+    }
+
     // Armamos la tarjeta (Embed) estructurada para Discord
     const payload = {
         embeds: [{
             title: "⚔️ Nueva Postulación: Guild BLESSED",
-            color: 0x00d4ff, // Azul neón estilo MegaMu
+            color: 0x00d4ff,
             fields: [
                 { name: "👤 Personaje", value: personaje, inline: true },
+                { name: "📧 Correo Electrónico", value: email, inline: true },
                 { name: "🛡️ Raza / Clase", value: clase, inline: true },
                 { name: "🔄 Resets", value: resets.toString(), inline: true },
                 { name: "🔮 Nivel Master", value: masterLvl.toString(), inline: true },
                 { name: "🗡️ Set / Equipamiento", value: equipamiento, inline: true },
                 { name: "🏹 Nivel Hunt", value: huntLvl.toString(), inline: true },
+                { name: "📱 Teléfono / WhatsApp", value: telefono, inline: true },
                 { name: "🚩 Última Guild", value: guildAnterior, inline: false },
-                { name: "⚔️ PJ Battle", value: pjBattle, inline: false },
-                { name: "📱 Teléfono / WhatsApp", value: telefono, inline: false }
+                { name: "⚔️ PJ Battle", value: pjBattle, inline: false }
             ],
             footer: { 
                 text: "Bricourt Networks | Sistema de Registro MEGAMU" 
