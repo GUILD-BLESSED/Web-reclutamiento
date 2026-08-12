@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bricourt Networks | Reclutamiento BLESSED</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Bricourt Networks</h1>
+        <p>Servicios & Guild Management</p>
+    </header>
+
+    <main class="container">
+        <section class="form-wrapper">
+            <h2>Reclutamiento Guild BLESSED - MEGAMU</h2>
+            
+            <form id="formularioGuild">
+                <div class="form-grid">
+                    <!-- Nombre del Personaje -->
+                    <div class="input-group">
+                        <label for="personaje">Nombre del Personaje *</label>
+                        <input type="text" id="personaje" placeholder="Ej: Nhimtb" required>
+                    </div>
+
+                    <!-- Clase / Raza -->
+                    <div class="input-group">
+                        <label for="clase">Raza / Clase Principal *</label>
+                        <select id="clase" required>
+                            <option value="" disabled selected>Selecciona una clase</option>
+                            <option value="ELF">Elf</option>
+                            <option value="SM">Soul Master (SM)</option>
+                            <option value="BK">Blade Knight (BK)</option>
+                            <option value="RF">Rage Fighter (RF)</option>
+                            <option value="MG">Magic Gladiator (MG)</option>
+                            <option value="DL">Dark Lord (DL)</option>
+                            <option value="SUM">Summoner (SUM)</option>
+                            <option value="SL">Slayer (SL)</option>
+                            <option value="GL">Grow Lancer (GL)</option>
+                            <option value="RW">Rune Wizard (RW)</option>
+                        </select>
+                    </div>
+
+                    <!-- Resets -->
+                    <div class="input-group">
+                        <label for="resets">Resets *</label>
+                        <input type="number" id="resets" placeholder="Ej: 200" required>
+                    </div>
+
+                    <!-- Nivel Master -->
+                    <div class="input-group">
+                        <label for="masterLvl">Nivel Master *</label>
+                        <input type="number" id="masterLvl" placeholder="Ej: 1081" required>
+                    </div>
+
+                    <!-- Equipamiento / Set -->
+                    <div class="input-group">
+                        <label for="equipamiento">Set que tiene tu Personaje *</label>
+                        <select id="equipamiento" required>
+                            <option value="" disabled selected>Selecciona tu Set</option>
+                            <option value="Silver Heart">Silver Heart</option>
+                            <option value="Blue Eye">Blue Eye</option>
+                            <option value="Awakening">Awakening</option>
+                            <option value="HolyAngel">HolyAngel</option>
+                            <option value="DarkAngel">DarkAngel</option>
+                            <option value="BloodAngel">BloodAngel</option>
+                            <option value="Set Lvl 400">Set Lvl 400</option>
+                            <option value="Set Lvl 380">Set Lvl 380</option>
+                            <option value="Acc">Acc</option>
+                            <option value="Exe">Exe</option>
+                        </select>
+                    </div>
+
+                    <!-- Nivel Hunt -->
+                    <div class="input-group">
+                        <label for="huntLvl">Nivel Hunt *</label>
+                        <input type="number" id="huntLvl" placeholder="Ej: 60" required>
+                    </div>
+
+                    <!-- Última Guild -->
+                    <div class="input-group">
+                        <label for="guildAnterior">Última Guild a la que perteneciste</label>
+                        <input type="text" id="guildAnterior" placeholder="Ej: Ninguna / Nombre de Guild">
+                    </div>
+
+                    <!-- Número telefónico -->
+                    <div class="input-group">
+                        <label for="telefono">Número Telefónico (WhatsApp) *</label>
+                        <input type="tel" id="telefono" placeholder="Ej: +58 412 0000000" required>
+                    </div>
+                </div>
+
+                <!-- PJ Battle -->
+                <div class="input-group full-width">
+                    <label for="pjBattle">¿Tienes PJ Battle? (Indica Nombre, Lvl Master y Hunt de tenerlo)</label>
+                    <input type="text" id="pjBattle" placeholder="Ej: No / O escribe: Nombre - Master 1081 - Hunt 60">
+                </div>
+
+                <!-- REGLAS Y TÉRMINOS (Solo lectura en pantalla) -->
+                <div class="terms-box">
+                    <h3>📜 CONDICIONES Y TÉRMINOS PARA EL INGRESO</h3>
+                    <div class="terms-content">
+                        <p><strong>BLESSED</strong> cuenta con un período de prueba de <strong>30 días</strong>. En ese tiempo se evalúa el desarrollo, colaboración, apoyo y participación en el juego.</p>
+                        <p>Cumplido este tiempo, los Masters se pondrán en contacto para hacer Cambio de Tag a <strong>Miembro Oficial</strong>, optando por Tag PVP o Tag Sv19.</p>
+                        <p>En todo momento se deben <strong>respetar las Alianzas</strong> identificadas con <code>&lt; GUILDX - REALTAG &gt;</code>.</p>
+                        <p>Se exige estricto <strong>RESPECTO y DISCRECIÓN</strong> con la información compartida en los grupos e internos.</p>
+                        <p><em>Un administrador se pondrá en contacto con usted. ¡Éxitos y suerte! 🫡💪</em></p>
+                    </div>
+                </div>
+
+                <div class="input-group checkbox-group">
+                    <input type="checkbox" id="aceptoTerminos" required>
+                    <label for="aceptoTerminos">He leído y acepto los términos y condiciones de la Guild BLESSED</label>
+                </div>
+
+                <button type="submit" id="btnEnviar">Enviar Aplicación</button>
+            </form>
+
+            <div id="statusMessage" class="hidden"></div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+    </html>
+    
