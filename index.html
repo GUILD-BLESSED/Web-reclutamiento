@@ -24,6 +24,12 @@
                         <input type="text" id="personaje" placeholder="Ej: Nhimtb" required>
                     </div>
 
+                    <!-- Correo Electrónico (NUEVO CAMPO) -->
+                    <div class="input-group">
+                        <label for="email">Correo Electrónico *</label>
+                        <input type="email" id="email" placeholder="Ej: tu-correo@gmail.com" required>
+                    </div>
+
                     <!-- Clase / Raza -->
                     <div class="input-group">
                         <label for="clase">Raza / Clase Principal *</label>
@@ -78,16 +84,16 @@
                         <input type="number" id="huntLvl" placeholder="Ej: 60" required>
                     </div>
 
-                    <!-- Última Guild -->
-                    <div class="input-group">
-                        <label for="guildAnterior">Última Guild a la que perteneciste</label>
-                        <input type="text" id="guildAnterior" placeholder="Ej: Ninguna / Nombre de Guild">
-                    </div>
-
                     <!-- Número telefónico -->
                     <div class="input-group">
                         <label for="telefono">Número Telefónico (WhatsApp) *</label>
                         <input type="tel" id="telefono" placeholder="Ej: +58 412 0000000" required>
+                    </div>
+
+                    <!-- Última Guild -->
+                    <div class="input-group full-width">
+                        <label for="guildAnterior">Última Guild a la que perteneciste</label>
+                        <input type="text" id="guildAnterior" placeholder="Ej: Ninguna / Nombre de Guild">
                     </div>
                 </div>
 
@@ -97,7 +103,7 @@
                     <input type="text" id="pjBattle" placeholder="Ej: No / O escribe: Nombre - Master 1081 - Hunt 60">
                 </div>
 
-                <!-- REGLAS Y TÉRMINOS (Solo lectura en pantalla) -->
+                <!-- REGLAS Y TÉRMINOS -->
                 <div class="terms-box">
                     <h3>📜 CONDICIONES Y TÉRMINOS PARA EL INGRESO</h3>
                     <div class="terms-content">
@@ -123,5 +129,4 @@
 
     <script src="script.js"></script>
 </body>
-    </html>
-    
+</html>
