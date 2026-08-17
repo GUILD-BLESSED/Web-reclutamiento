@@ -13,9 +13,10 @@ formulario.addEventListener('submit', async (e) => {
     // PEGA TU WEBHOOK DE DISCORD AQUÍ ABAJO
     const webhookUrl = 'https://discord.com/api/webhooks/1536988431509495921/ZSq7hSUTawa3z_-yujh61wGmjNO1kpoO7UgE3rCMWBRfcSB7Zy44RGyusR-Ry_R44yHA'; 
 
-    // Captura de datos del formulario
+    // Captura de datos del formulario incluyendo el país
     const personaje = document.getElementById('personaje').value.trim();
-    const email = document.getElementById('email').value.trim(); // <--- CAPTURA EMAIL
+    const email = document.getElementById('email').value.trim();
+    const pais = document.getElementById('pais').value; // <--- CAPTURA PAÍS
     const clase = document.getElementById('clase').value;
     const resets = document.getElementById('resets').value;
     const masterLvl = document.getElementById('masterLvl').value;
@@ -26,8 +27,8 @@ formulario.addEventListener('submit', async (e) => {
     const pjBattle = document.getElementById('pjBattle').value.trim() || 'No';
 
     // Validaciones
-    if (!clase || !equipamiento) {
-        mostrarMensaje('Por favor, selecciona tu clase y equipamiento.', 'error');
+    if (!clase || !equipamiento || !pais) {
+        mostrarMensaje('Por favor, completa todos los campos obligatorios.', 'error');
         return;
     }
 
@@ -43,20 +44,21 @@ formulario.addEventListener('submit', async (e) => {
         return;
     }
 
-    // Armamos la tarjeta (Embed) estructurada para Discord
+    // Armamos la tarjeta (Embed) estructurada para Discord con el campo País
     const payload = {
         embeds: [{
             title: "⚔️ Nueva Postulación: Guild BLESSED",
             color: 0x00d4ff,
             fields: [
                 { name: "👤 Personaje", value: personaje, inline: true },
-                { name: "📧 Correo Electrónico", value: email, inline: true },
-                { name: "🛡️ Raza / Clase", value: clase, inline: true },
+                { name: "📧 Correo", value: email, inline: true },
+                { name: "🌍 País", value: pais, inline: true },
+                { name: "📱 WhatsApp", value: telefono, inline: true },
+                { name: "🛡️ Clase", value: clase, inline: true },
                 { name: "🔄 Resets", value: resets.toString(), inline: true },
                 { name: "🔮 Nivel Master", value: masterLvl.toString(), inline: true },
-                { name: "🗡️ Set / Equipamiento", value: equipamiento, inline: true },
+                { name: "🗡️ Set", value: equipamiento, inline: true },
                 { name: "🏹 Nivel Hunt", value: huntLvl.toString(), inline: true },
-                { name: "📱 Teléfono / WhatsApp", value: telefono, inline: true },
                 { name: "🚩 Última Guild", value: guildAnterior, inline: false },
                 { name: "⚔️ PJ Battle", value: pjBattle, inline: false }
             ],
