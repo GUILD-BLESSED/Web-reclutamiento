@@ -11,7 +11,7 @@ formulario.addEventListener('submit', async (e) => {
     e.preventDefault();
     
     // PEGA TU WEBHOOK DE DISCORD AQUÍ ABAJO
-    const webhookUrl = 'https://discord.com/api/webhooks/1536988431509495921/ZSq7hSUTawa3z_-yujh61wGmjNO1kpoO7UgE3rCMWBRfcSB7Zy44RGyusR-Ry_R44yHA'; 
+    const webhookUrl = 'https://discord.com/api/webhooks/1545114077154770944/IPz0DjUvvLCTQLpGJN_7BWXAlfIa1BA1rn0AsMUok6Aihp4RL0JLrcMDcYT1lzfKMSNb'; 
 
     // Captura de datos del formulario incluyendo el país
     const personaje = document.getElementById('personaje').value.trim();
