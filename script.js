@@ -10,13 +10,12 @@ function mostrarMensaje(texto, tipo) {
 formulario.addEventListener('submit', async (e) => {
     e.preventDefault();
     
-    // PEGA TU WEBHOOK DE DISCORD AQUÍ ABAJO
-    const webhookUrl = 'https://discord.com/api/webhooks/1572750657847435364/Y8T2frRPFkdAvjYNimTtJgIs7RfLkOgh32rlGF_NYeMCXJophWs4GBzEgDwlzULCJPET'; 
+    // URL de tu servidor backend / proxy (ej: http://localhost:3000/api/enviar-postulacion)
+    const backendUrl = 'http://localhost:3000/api/enviar-postulacion'; 
 
-    // Captura de datos del formulario incluyendo el país
+    // Captura de datos del formulario[span_1](start_span)[span_1](end_span)
     const personaje = document.getElementById('personaje').value.trim();
     const email = document.getElementById('email').value.trim();
-    const pais = document.getElementById('pais').value; // <--- CAPTURA PAÍS
     const clase = document.getElementById('clase').value;
     const resets = document.getElementById('resets').value;
     const masterLvl = document.getElementById('masterLvl').value;
@@ -26,9 +25,9 @@ formulario.addEventListener('submit', async (e) => {
     const guildAnterior = document.getElementById('guildAnterior').value.trim() || 'Ninguna / No especifica';
     const pjBattle = document.getElementById('pjBattle').value.trim() || 'No';
 
-    // Validaciones
-    if (!clase || !equipamiento || !pais) {
-        mostrarMensaje('Por favor, completa todos los campos obligatorios.', 'error');
+    // Validaciones[span_2](start_span)[span_2](end_span)
+    if (!clase || !equipamiento) {
+        mostrarMensaje('Por favor, selecciona tu clase y equipamiento.', 'error');
         return;
     }
 
@@ -37,55 +36,46 @@ formulario.addEventListener('submit', async (e) => {
         return;
     }
 
-    // Validación básica de formato de correo
+    // Validación básica de formato de correo[span_3](start_span)[span_3](end_span)
     const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!regexEmail.test(email)) {
         mostrarMensaje('Por favor, ingresa un correo electrónico válido.', 'error');
         return;
     }
 
-    // Armamos la tarjeta (Embed) estructurada para Discord con el campo País
+    // Objeto con los datos que se enviarán al servidor backend[span_4](start_span)[span_4](end_span)
     const payload = {
-        embeds: [{
-            title: "⚔️ Nueva Postulación: Guild BLESSED",
-            color: 0x00d4ff,
-            fields: [
-                { name: "👤 Personaje", value: personaje, inline: true },
-                { name: "📧 Correo", value: email, inline: true },
-                { name: "🌍 País", value: pais, inline: true },
-                { name: "📱 WhatsApp", value: telefono, inline: true },
-                { name: "🛡️ Clase", value: clase, inline: true },
-                { name: "🔄 Resets", value: resets.toString(), inline: true },
-                { name: "🔮 Nivel Master", value: masterLvl.toString(), inline: true },
-                { name: "🗡️ Set", value: equipamiento, inline: true },
-                { name: "🏹 Nivel Hunt", value: huntLvl.toString(), inline: true },
-                { name: "🚩 Última Guild", value: guildAnterior, inline: false },
-                { name: "⚔️ PJ Battle", value: pjBattle, inline: false }
-            ],
-            footer: { 
-                text: "Bricourt Networks | Sistema de Registro MEGAMU" 
-            },
-            timestamp: new Date().toISOString()
-        }]
+        personaje,
+        email,
+        clase,
+        resets,
+        masterLvl,
+        equipamiento,
+        huntLvl,
+        telefono,
+        guildAnterior,
+        pjBattle
     };
 
     mostrarMensaje('Enviando registro...', 'success');
 
     try {
-        const res = await fetch(webhookUrl, {
+        const res = await fetch(backendUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
         });
 
-        if (res.ok) {
+        const resultado = await res.json();
+
+        if (res.ok && resultado.success) {
             mostrarMensaje('¡Postulación enviada con éxito! Un administrador te contactará.', 'success');
             formulario.reset();
         } else {
-            throw new Error('Respuesta fallida del servidor');
+            throw new Error(resultado.message || 'Respuesta fallida del servidor');
         }
     } catch (err) {
         console.error('Error al enviar:', err);
-        mostrarMensaje('Error al enviar la aplicación. Verifica la conexión o el Webhook.', 'error');
+        mostrarMensaje('Error al conectar con el servidor de envío. Asegúrate de que el backend esté activo.', 'error');
     }
 });
